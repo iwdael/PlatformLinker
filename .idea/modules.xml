@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LoginShare.iml" filepath="$PROJECT_DIR$/LoginShare.iml" />
+      <module fileurl="file://C:\Users\absurd\Desktop\LoginShare\LoginShare.iml" filepath="C:\Users\absurd\Desktop\LoginShare\LoginShare.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
+      <module fileurl="file://C:\Users\absurd\Desktop\LoginShare\example\example.iml" filepath="C:\Users\absurd\Desktop\LoginShare\example\example.iml" />
       <module fileurl="file://$PROJECT_DIR$/libloginshare/libloginshare.iml" filepath="$PROJECT_DIR$/libloginshare/libloginshare.iml" />
+      <module fileurl="file://C:\Users\absurd\Desktop\LoginShare\libloginshare\libloginshare.iml" filepath="C:\Users\absurd\Desktop\LoginShare\libloginshare\libloginshare.iml" />
     </modules>
   </component>
 </project>
