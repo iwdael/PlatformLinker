@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LoginShare.iml" filepath="$PROJECT_DIR$/LoginShare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libloginshare/libloginshare.iml" filepath="$PROJECT_DIR$/libloginshare/libloginshare.iml" />
+    </modules>
+  </component>
+</project>
