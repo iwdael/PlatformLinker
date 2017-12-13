@@ -1,5 +1,78 @@
 # LoginShare  [![](https://jitpack.io/v/aliletter/loginshare.svg)](https://jitpack.io/#aliletter/loginshare)
 loginshare integrates login and share of QQ, Weibo and WeChat . It is simple to configure, easy to use, and can be quickly applied to applications, saving a lot of time for developers. (loginshare集成QQ，微博，微信的登录和分享。它配置简单，使用方便，且能够快速运用到应用中，为开发者节省了大量时间。)
+# Instruction
+## LoginShare
+Login and Share of WeChat, QQ and Weibo can be achieved through loginshare. If you only want to achieve login function, you can not achieve these two methods(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data)).
+```Java
+public class MainActivity extends AppCompatActivity implements OnLoginshareListener {
+    LoginShare loginShare;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        loginShare = new LoginShare(this);
+	
+        //loginShare.launchQQLogin();
+        //loginShare.launchWechatLogin();
+        //loginShare.launchWeiboLogin();
+	//loginShare.launchQQShare(MessageBody.QQMessageBodyBuilder());
+        //loginShare.launchWechatShare(MessageBody.WechatMessageBodyBuilder());
+        //loginShare.launchWeiboShare(MessageBody.WeiboMessageBodyBuilder());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loginShare.register(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        loginShare.unRegister();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        loginShare.onNewIntent(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        loginShare.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    
+    /**
+     * @param type QQ ,Wechat or Weibo
+     * @param info Json String of userinfo
+     */
+    @Override
+    public void onLoginSuccess(Type type, String info) {
+    }
+
+    @Override
+    public void onLoginCancel(Type type) {
+    }
+
+    @Override
+    public void onLoginError(Type type, int errorCode) {
+    }
+
+    @Override
+    public void onShareSuccess(Type type) {
+    }
+
+    @Override
+    public void onShareCancel(Type type) {
+    }
+
+    @Override
+    public void onShareError(Type type, int code) {
+    }
+```
 # How to
 To get a Git project into your build:
 ## Step 1. Add the JitPack repository to your build file
