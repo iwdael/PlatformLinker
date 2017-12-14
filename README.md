@@ -82,6 +82,7 @@ Add it in your root build.gradle at the end of repositories:
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
+			maven { url "https://dl.bintray.com/thelasterstar/maven/" }
 		}
 	}
   
@@ -89,6 +90,8 @@ Add it in your root build.gradle at the end of repositories:
 
 	dependencies {
 	       compile 'com.github.aliletter:loginshare:v1.0.0'
+	       compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+	       compile 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
 	}
 ## Step 3. Set JniLibs directory
 ```Java
@@ -111,8 +114,57 @@ Click here [java file](https://raw.githubusercontent.com/aliletter/loginshare/ma
 ## Step 6. Modify AndroidManifest file
 Copy the following code to your Application tag
 ```Java
+    <application 
+        android:icon="@mipmap/app_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/app_logo_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+	......
+        <meta-data
+            android:name="qq"
+            android:value="qq_key" />
+        <meta-data
+            android:name="wechat"
+            android:value="wechat_key" />
+        <meta-data
+            android:name="wechatSecret"
+            android:value="wechat_secret" />
+        <meta-data
+            android:name="weibo"
+            android:value="weibo_key" />
+        <meta-data
+            android:name="weiboRedirectUrl"
+            android:value="weibo_redirectUrl" />
+        <meta-data
+            android:name="weiboScope"
+            android:value="weibo_scope" />
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
+                <data android:scheme="tencent1234567" />
+		<!-- tencent+qq_key -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <!-- java file corresponds to it  -->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:label="@string/app_name" />	    
+	......
 
 ```
-
+## step 7. Modify the signature
+The signature of the third-party account you apply to is consistent with the signature of your application. Otherwise, there is a problem logging in and sharing.
