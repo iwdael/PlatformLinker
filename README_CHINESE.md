@@ -1,8 +1,8 @@
 # LoginShare  [![](https://jitpack.io/v/aliletter/loginshare.svg)](https://jitpack.io/#aliletter/loginshare)
-loginshare integrates login and share of QQ, Weibo and WeChat . It is simple to configure, easy to use, and can be quickly applied to applications, saving a lot of time for developers.[中文文档](https://github.com/aliletter/LoginShare/blob/master/README_CHINESE.md)
-# Instruction
-Login and Share of WeChat, QQ and Weibo can be achieved through loginshare. If you only want to achieve login function, you can not achieve these two methods(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data)).
-## Code Sample
+loginshare集成QQ，微博，微信的登录和分享。它配置简单，使用方便，且能够快速运用到应用中，为开发者节省了大量时间。
+## 使用说明
+QQ，微博，微信的登录和分享必须通过LoginShare类来实现，如果你只想实现登录功能，那么这两个方法就可以不用实现(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data))。
+### 代码示例
 ```Java
 public class MainActivity extends AppCompatActivity implements OnLoginshareListener {
     LoginShare loginShare;
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements OnLoginshareListe
     }
     
     /**
-     * @param type QQ ,Wechat or Weibo
-     * @param info Json String of userinfo
+     * @param type 类型 QQ ,Wechat 或 Weibo
+     * @param info json格式字符串的用户信息
      */
     @Override
     public void onLoginSuccess(Type type, String info) {
@@ -86,17 +86,14 @@ Add it in your root build.gradle at the end of repositories.   [click here for d
 		}
 	}
 ```
-### Step 2. Add the dependency
-Add it in your application module build.gradle at the end of dependencies where you want to use.[click here for details](https://github.com/aliletter/CarouselBanner/blob/master/application_build.gradle.png)
-```Java
+## Step 2. Add the dependency
+
 	dependencies {
 	       compile 'com.github.aliletter:loginshare:v1.0.0'
 	       compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 	       compile 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
 	}
-```
-### Step 3. Set JniLibs directory
-Add it in your application module build.gradle.[click here for details](https://github.com/aliletter/gifengine/blob/master/jnilibs.png)
+## Step 3. Set JniLibs directory
 ```Java
 android {
     ...
@@ -108,13 +105,13 @@ android {
 }
 
 ```
-### Step 4. Copy dynamic library file
+## Step 4. Copy dynamic library file
 Click here [dynamic library file](https://raw.githubusercontent.com/aliletter/loginshare/master/libs.7z) ,copy the files to your application.
 ![Image text](https://github.com/aliletter/LoginShare/blob/master/libs.png)
-### Step 5. Copy java file
+## Step 5. Copy java file
 Click here [java file](https://raw.githubusercontent.com/aliletter/loginshare/master/wxapi.7z),copy and unzip the files to your package.
 ![Image text](https://github.com/aliletter/LoginShare/blob/master/wxapi.png)
-### Step 6. Modify AndroidManifest file
+## Step 6. Modify AndroidManifest file
 Copy the following code to your Application tag
 ```Java
     <application 
@@ -169,10 +166,5 @@ Copy the following code to your Application tag
 	......
 
 ```
-### step 7. Modify the signature
+## step 7. Modify the signature
 The signature of the third-party account you apply to is consistent with the signature of your application. Otherwise, there is a problem logging in and sharing.
-</br></br></br>
-## Thank you for your browsing
-If you have any questions, please join the QQ group. I will do my best to answer it for you. Welcome to star and fork this repository, alse follow me.
-<br>
-![Image Text](https://github.com/aliletter/CarouselBanner/blob/master/qq_group.png)
