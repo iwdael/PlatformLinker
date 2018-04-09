@@ -7,10 +7,10 @@ import com.blackchopper.loginshare.model.WechatMessageBody;
 import com.blackchopper.loginshare.model.WeiboMessageBody;
 
 /**
- * Author：alilettter
- * Github: http://github.com/aliletter
- * Email: 4884280@qq.com
- * data: 2017/12/11
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project : LoginShare
  */
 
 public interface ILoginShare {

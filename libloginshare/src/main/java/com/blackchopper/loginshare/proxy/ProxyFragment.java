@@ -7,10 +7,10 @@ import android.support.v4.app.Fragment;
 import com.blackchopper.loginshare.impl.BaseLoginShare;
 
 /**
- * Author：alilettter
- * Github: http://github.com/aliletter
- * Email: 4884280@qq.com
- * data: 2017/12/11
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project : LoginShare
  */
 
 //替身Fragment，必须要V4的才行

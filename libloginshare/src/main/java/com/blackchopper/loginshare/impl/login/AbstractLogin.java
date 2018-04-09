@@ -8,10 +8,10 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.tauth.IUiListener;
 
 /**
- * Author：alilettter
- * Github: http://github.com/aliletter
- * Email: 4884280@qq.com
- * data: 2017/12/11
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project : LoginShare
  */
 
   abstract class AbstractLogin extends BaseLoginShare implements WbAuthListener, IUiListener {

@@ -22,10 +22,10 @@ import com.sina.weibo.sdk.web.WebRequestType;
 import com.sina.weibo.sdk.web.param.ShareWebViewRequestParam;
 
 /**
- * Author：alilettter
- * Github: http://github.com/aliletter
- * Email: 4884280@qq.com
- * data: 2017/12/12
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project : LoginShare
  */
 
 public class WbShareHandler {
@@ -135,7 +135,12 @@ public class WbShareHandler {
         this.context.startActivity(webIntent);
     }
 
-    /** @deprecated */
+    /**
+ * author  : Black Chopper
+ * e-mail  : 4884280@qq.com
+ * github  : http://github.com/BlackChopper
+ * project : LoginShare
+ */
     @Deprecated
     public boolean isWbAppInstalled() {
         return WbSdk.isWbInstall(this.context);
