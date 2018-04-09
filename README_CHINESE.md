@@ -1,4 +1,4 @@
-# LoginShare  [![](https://jitpack.io/v/aliletter/loginshare.svg)](https://jitpack.io/#aliletter/loginshare)
+# LoginShare  [![](https://jitpack.io/v/blackchopper/loginshare.svg)](https://jitpack.io/#blackchopper/loginshare)
 loginshare集成QQ，微博，微信的登录和分享。它配置简单，使用方便，且能够快速运用到应用中，为开发者节省了大量时间。
 ## 使用说明
 QQ，微博，微信的登录和分享必须通过LoginShare类来实现，如果你只想实现登录功能，那么这两个方法就可以不用实现(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data))。
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements OnLoginshareListe
 ## 如何配置
 将本仓库引入你的项目:
 ### Step 1. 添加JitPack仓库到Build文件
-合并以下代码到项目根目录下的build.gradle文件的repositories尾。[点击查看详情](https://github.com/aliletter/CarouselBanner/blob/master/root_build.gradle.png)
+合并以下代码到项目根目录下的build.gradle文件的repositories尾。[点击查看详情](https://github.com/blackchopper/CarouselBanner/blob/master/root_build.gradle.png)
 ```Java
 	allprojects {
 		repositories {
@@ -87,17 +87,17 @@ public class MainActivity extends AppCompatActivity implements OnLoginshareListe
 	}
 ```
 ### Step 2. 添加依赖   
-合并以下代码到需要使用的application Module的dependencies尾。[点击查看详情](https://github.com/aliletter/CarouselBanner/blob/master/application_build.gradle.png)
+合并以下代码到需要使用的application Module的dependencies尾。[点击查看详情](https://github.com/blackchopper/CarouselBanner/blob/master/application_build.gradle.png)
 ```Java
 	dependencies {
                 ...
-	       compile 'com.github.aliletter:loginshare:v1.0.0'
+	       compile 'com.github.blackchopper:loginshare:v1.0.1'
 	       compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 	       compile 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
 	}
 ```
 ### Step 3. 设置JniLibs目录
-合并以下代码到你的application module的build.gradle。[点击查看详情](https://github.com/aliletter/gifengine/blob/master/jnilibs.png)
+合并以下代码到你的application module的build.gradle。[点击查看详情](https://github.com/blackchopper/gifengine/blob/master/jnilibs.png)
 ```Java
 android {
     ...
@@ -110,11 +110,11 @@ android {
 
 ```
 ### Step 4. 复制动态库文件
-点击这里下载 [动态文件](https://raw.githubusercontent.com/aliletter/loginshare/master/libs.7z)，解压并复制文件到libs目录。
-![Image text](https://github.com/aliletter/LoginShare/blob/master/libs.png)
+点击这里下载 [动态文件](https://raw.githubusercontent.com/blackchopper/loginshare/master/libs.7z)，解压并复制文件到libs目录。
+![Image text](https://github.com/blackchopper/LoginShare/blob/master/libs.png)
 ### Step 5. 复制Java文件
-点击这里下载 [Java文件](https://raw.githubusercontent.com/aliletter/loginshare/master/wxapi.7z),解压并复制文件到应用包。
-![Image text](https://github.com/aliletter/LoginShare/blob/master/wxapi.png)
+点击这里下载 [Java文件](https://raw.githubusercontent.com/blackchopper/loginshare/master/wxapi.7z),解压并复制文件到应用包。
+![Image text](https://github.com/blackchopper/LoginShare/blob/master/wxapi.png)
 ### Step 6. 修改AndroidManifest文件
 复制代码且合并到Application标签
 ```Java
@@ -176,4 +176,4 @@ android {
 ## 感谢浏览
 如果你有任何疑问，请加入QQ群，我将竭诚为你解答。欢迎Star和Fork本仓库，当然也欢迎你关注我。
 <br>
-![Image Text](https://github.com/aliletter/CarouselBanner/blob/master/qq_group.png)
+![Image Text](https://github.com/blackchopper/CarouselBanner/blob/master/qq_group.png)
