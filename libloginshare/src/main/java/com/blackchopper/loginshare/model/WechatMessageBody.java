@@ -101,7 +101,7 @@ public class WechatMessageBody {
         return this;
     }
 
-    public WechatMessageBody image(String imageUrl) {
+    public WechatMessageBody imageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
         return this;
     }
