@@ -50,7 +50,7 @@ public abstract class ShareImpl extends Share {
                 msg.mediaObject = getMediaObject(weiboMessageBody);
 
             case WeiboMessageBody.MSG_TEXT_IAMGE:
-                if (weiboMessageBody.getImage() != null)
+                if (weiboMessageBody.getLocalImage() != null)
                     msg.imageObject = getImageObject(weiboMessageBody);
                 if (weiboMessageBody.getImagesPath() != null)
                     msg.multiImageObject = getMultiImageObject(weiboMessageBody);
@@ -79,8 +79,8 @@ public abstract class ShareImpl extends Share {
         StoryMessage storyMessage = new StoryMessage();
         switch (weiboMessageBody.msgType) {
             case WeiboMessageBody.MSG_TEXT_IAMGE:
-                if (weiboMessageBody.getImage() != null)
-                    storyMessage.setImageUri(Uri.fromFile(new File(weiboMessageBody.getImage())));
+                if (weiboMessageBody.getLocalImage() != null)
+                    storyMessage.setImageUri(Uri.fromFile(new File(weiboMessageBody.getLocalImage())));
                 break;
             case WeiboMessageBody.MSG_VIDEO:
                 if (weiboMessageBody.getVideoPath() != null)
@@ -98,7 +98,7 @@ public abstract class ShareImpl extends Share {
         WXMediaMessage msg = new WXMediaMessage(webpage);
         msg.title = wechatMessageBody.getTitle();
         msg.description = wechatMessageBody.getDescription();
-        Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getImage());
+        Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getLocalImage());
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, Util.THUMB_SIZE, Util.THUMB_SIZE, true);
         bmp.recycle();
         msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
@@ -116,7 +116,7 @@ public abstract class ShareImpl extends Share {
         WXMediaMessage msg = new WXMediaMessage(video);
         msg.title = wechatMessageBody.getTitle();
         msg.description = wechatMessageBody.getDescription();
-        Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getImage());
+        Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getLocalImage());
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, Util.THUMB_SIZE, Util.THUMB_SIZE, true);
         bmp.recycle();
         msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
@@ -135,7 +135,7 @@ public abstract class ShareImpl extends Share {
         msg.mediaObject = music;
         msg.title = wechatMessageBody.getTitle();
         msg.description = wechatMessageBody.getDescription();
-        Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getImage());
+        Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getLocalImage());
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, Util.THUMB_SIZE, Util.THUMB_SIZE, true);
         bmp.recycle();
         msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
@@ -148,7 +148,7 @@ public abstract class ShareImpl extends Share {
     @Override
     protected BaseReq buildImageWeChatMessageBody(WechatMessageBody wechatMessageBody) {
         SendMessageToWX.Req req = new SendMessageToWX.Req();
-        Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getImage());
+        Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getLocalImage());
         WXImageObject imgObj = new WXImageObject(bmp);
         WXMediaMessage msg = new WXMediaMessage();
         msg.mediaObject = imgObj;
