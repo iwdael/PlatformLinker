@@ -100,7 +100,8 @@ public abstract class ShareImpl extends Share {
         msg.description = wechatMessageBody.getDescription();
         Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getLocalImage());
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, Util.THUMB_SIZE, Util.THUMB_SIZE, true);
-        bmp.recycle();
+        if (!bmp.equals(thumbBmp))
+            bmp.recycle();
         msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
         req.transaction = Util.buildTransaction("webpage");
         req.message = msg;
@@ -118,7 +119,8 @@ public abstract class ShareImpl extends Share {
         msg.description = wechatMessageBody.getDescription();
         Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getLocalImage());
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, Util.THUMB_SIZE, Util.THUMB_SIZE, true);
-        bmp.recycle();
+        if (!bmp.equals(thumbBmp))
+            bmp.recycle();
         msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
         req.transaction = Util.buildTransaction("video");
         req.message = msg;
@@ -137,7 +139,8 @@ public abstract class ShareImpl extends Share {
         msg.description = wechatMessageBody.getDescription();
         Bitmap bmp = BitmapFactory.decodeFile(wechatMessageBody.getLocalImage());
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, Util.THUMB_SIZE, Util.THUMB_SIZE, true);
-        bmp.recycle();
+        if (!bmp.equals(thumbBmp))
+            bmp.recycle();
         msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
         req.transaction = Util.buildTransaction("music");
         req.message = msg;
@@ -153,7 +156,8 @@ public abstract class ShareImpl extends Share {
         WXMediaMessage msg = new WXMediaMessage();
         msg.mediaObject = imgObj;
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, Util.THUMB_SIZE, Util.THUMB_SIZE, true);
-        bmp.recycle();
+        if (!bmp.equals(thumbBmp))
+            bmp.recycle();
         msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
         req.transaction = Util.buildTransaction("img");
         req.message = msg;
