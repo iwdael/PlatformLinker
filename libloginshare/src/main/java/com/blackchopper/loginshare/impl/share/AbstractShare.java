@@ -8,6 +8,7 @@ import com.blackchopper.loginshare.model.QQMessageBody;
 import com.blackchopper.loginshare.model.Type;
 import com.blackchopper.loginshare.model.WechatMessageBody;
 import com.blackchopper.loginshare.model.WeiboMessageBody;
+import com.blackchopper.loginshare.net.FileDownloadHttp;
 import com.sina.weibo.sdk.api.StoryMessage;
 import com.sina.weibo.sdk.api.WeiboMultiMessage;
 import com.sina.weibo.sdk.share.WbShareCallback;
@@ -23,28 +24,15 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
  * project : LoginShare
  */
 
-  abstract class AbstractShare extends Login implements WbShareCallback {
+abstract class AbstractShare extends Login implements WbShareCallback {
 
     public AbstractShare(AppCompatActivity activity) {
         super(activity);
     }
 
-    @Override
-    public void launchWeiboShare(WeiboMessageBody weiboMessageBody) {
-        super.launchWeiboShare(weiboMessageBody);
-        if (weiboMessageBody.type == WeiboMessageBody.WEIBO)
-            shareHandler.shareMessage(buildWeiboMultiMessage(weiboMessageBody), false);
-        else
-            shareHandler.shareToStory(buildStoryMessage(weiboMessageBody));
-
-
-    }
-
     protected abstract StoryMessage buildStoryMessage(WeiboMessageBody weiboMessageBody);
 
-
     protected abstract WeiboMultiMessage buildWeiboMultiMessage(WeiboMessageBody weiboMessageBody);
-
 
     @Override
     public void launchQQShare(QQMessageBody qqMessageBody) {
@@ -69,18 +57,52 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
     }
 
     @Override
-    public void launchWechatShare(WechatMessageBody wechatMessageBody) {
+    public void launchWechatShare(final WechatMessageBody wechatMessageBody) {
         super.launchWechatShare(wechatMessageBody);
-        iWXAPI.sendReq(analyzeWeChatMessageBody(wechatMessageBody));
+        FileDownloadHttp http = new FileDownloadHttp(activity, wechatMessageBody.getImageUrl()) {
+            @Override
+            public void onResult(String path) {
+                wechatMessageBody.setLocalImage(path);
+                iWXAPI.sendReq(analyzeWeChatMessageBody(wechatMessageBody));
+            }
+
+            @Override
+            public void onError() {
+                listener.onShareError(Type.Wechat, 1000);
+            }
+        };
+        http.executor();
+
+    }
+
+    @Override
+    public void launchWeiboShare(final WeiboMessageBody weiboMessageBody) {
+        super.launchWeiboShare(weiboMessageBody);
+        FileDownloadHttp http = new FileDownloadHttp(activity, weiboMessageBody.getImageUrl()) {
+            @Override
+            public void onResult(String path) {
+                weiboMessageBody.setLocalImage(path);
+                if (weiboMessageBody.type == WeiboMessageBody.WEIBO)
+                    shareHandler.shareMessage(buildWeiboMultiMessage(weiboMessageBody), false);
+                else
+                    shareHandler.shareToStory(buildStoryMessage(weiboMessageBody));
+            }
+
+            @Override
+            public void onError() {
+                listener.onShareError(Type.Weibo, 1000);
+            }
+        };
+        http.executor();
+
+    }
+
+    @Override
+    protected WbShareCallback getWbShareCallback() {
+        return this;
     }
 
     protected abstract BaseReq analyzeWeChatMessageBody(WechatMessageBody wechatMessageBody);
-
-
-    @Override
-    public void onReq(BaseReq baseReq) {
-        super.onReq(baseReq);
-    }
 
     @Override
     public void onResp(BaseResp resp) {
@@ -107,10 +129,9 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
         }
     }
 
-
     @Override
-    protected WbShareCallback getWbShareCallback() {
-        return this;
+    public void onReq(BaseReq baseReq) {
+        super.onReq(baseReq);
     }
 
     @Override
