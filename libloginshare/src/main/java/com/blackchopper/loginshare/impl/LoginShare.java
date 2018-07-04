@@ -52,7 +52,8 @@ public class LoginShare extends ShareImpl {
          // 设置 Bitmap 类型的图片到视频对象里         设置缩略图。 注意：最终压缩过的缩略图大小不得超过 32kb。
         Bitmap bmp = BitmapFactory.decodeFile(weiboMessageBody.getLocalImage());
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, THUMB_SIZE, THUMB_SIZE, true);
-        bmp.recycle();
+        if (!bmp.equals(thumbBmp))
+            bmp.recycle();
         mediaObject.setThumbImage(thumbBmp);
         mediaObject.actionUrl = weiboMessageBody.getActionUrl();
         mediaObject.defaultText = "Webpage 默认文案";
