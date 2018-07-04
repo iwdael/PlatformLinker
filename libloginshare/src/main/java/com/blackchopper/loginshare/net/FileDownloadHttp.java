@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -23,50 +24,6 @@ public abstract class FileDownloadHttp {
         this.mUrl = url;
         this.mContext = context;
     }
-
-    public void executor() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    URL url = new URL(mUrl);
-                    HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-                    httpConn.setDoOutput(true);// 使用 URL 连接进行输出
-                    httpConn.setDoInput(true);// 使用 URL 连接进行输入
-                    httpConn.setUseCaches(false);// 忽略缓存
-                    httpConn.setRequestMethod("GET");// 设置URL请求方法
-                    //可设置请求头
-                    httpConn.setRequestProperty("Content-Type", "application/octet-stream");
-                    httpConn.setRequestProperty("Connection", "Keep-Alive");// 维持长连接
-                    httpConn.setRequestProperty("Charset", "UTF-8");
-                    byte[] file = input2byte(httpConn.getInputStream());
-                    String path = Environment.getExternalStorageDirectory().getPath() + "Android/data/";
-                    String packageName = mContext.getPackageName();
-                    packageName = packageName.replace(".", "/");
-                    path = path + packageName + "/" + System.currentTimeMillis() + ".jpg";
-                    writeBytesToFile(file, path);
-                    final String finalPath = path;
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            onResult(finalPath);
-                        }
-                    });
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            onError();
-                        }
-                    });
-                }
-
-            }
-        }).start();
-
-    }
-
 
     public static final byte[] input2byte(InputStream inStream)
             throws IOException {
@@ -104,6 +61,50 @@ public abstract class FileDownloadHttp {
         return file;
     }
 
+    public void executor() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    URL url = new URL(mUrl);
+                    HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+                    httpConn.setDoOutput(true);// 使用 URL 连接进行输出
+                    httpConn.setDoInput(true);// 使用 URL 连接进行输入
+                    httpConn.setUseCaches(false);// 忽略缓存
+                    httpConn.setRequestMethod("GET");// 设置URL请求方法
+                    //可设置请求头
+                    httpConn.setRequestProperty("Content-Type", "application/octet-stream");
+                    httpConn.setRequestProperty("Connection", "Keep-Alive");// 维持长连接
+                    httpConn.setRequestProperty("Charset", "UTF-8");
+                    byte[] file = input2byte(httpConn.getInputStream());
+                    String path = Environment.getExternalStorageDirectory().getPath() + "Android/data/";
+                    String packageName = mContext.getPackageName();
+                    path = path + packageName.replace(".", "/") + "/loginshare/";
+                    new File(path).mkdirs();
+                    path = path + System.currentTimeMillis() + ".jpg";
+                    writeBytesToFile(file, path);
+                    Log.i(FileDownloadHttp.this.getClass().getName(), path);
+                    final String finalPath = path;
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            onResult(finalPath);
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            onError();
+                        }
+                    });
+                }
+
+            }
+        }).start();
+
+    }
 
     public abstract void onResult(String path);
 
