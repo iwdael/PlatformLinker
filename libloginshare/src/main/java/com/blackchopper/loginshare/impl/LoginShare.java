@@ -50,7 +50,7 @@ public class LoginShare extends ShareImpl {
         mediaObject.title = weiboMessageBody.getTitle();
         mediaObject.description = weiboMessageBody.getDescription();
          // 设置 Bitmap 类型的图片到视频对象里         设置缩略图。 注意：最终压缩过的缩略图大小不得超过 32kb。
-        Bitmap bmp = BitmapFactory.decodeFile(weiboMessageBody.getImage());
+        Bitmap bmp = BitmapFactory.decodeFile(weiboMessageBody.getLocalImage());
         Bitmap thumbBmp = Bitmap.createScaledBitmap(bmp, THUMB_SIZE, THUMB_SIZE, true);
         bmp.recycle();
         mediaObject.setThumbImage(thumbBmp);
@@ -69,7 +69,7 @@ public class LoginShare extends ShareImpl {
     @Override
     protected ImageObject getImageObject(WeiboMessageBody weiboMessageBody) {
         ImageObject imageObject = new ImageObject();
-        Bitmap bitmap = BitmapFactory.decodeFile(weiboMessageBody.getImage());
+        Bitmap bitmap = BitmapFactory.decodeFile(weiboMessageBody.getLocalImage());
         imageObject.setImageObject(bitmap);
         return imageObject;
     }
