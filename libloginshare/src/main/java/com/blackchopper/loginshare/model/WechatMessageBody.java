@@ -21,20 +21,28 @@ public class WechatMessageBody {
     public Integer msgType;
 
     private String text;
-    private String image;
+    private String imageUrl;
     private String musicUrl;
     private String videoUrl;
     private String description;
     private String webpageUrl;
     private String title;
+    private String localImage;
 
+    public String getLocalImage() {
+        return localImage;
+    }
+
+    public void setLocalImage(String localImage) {
+        this.localImage = localImage;
+    }
 
     public String getText() {
         return text;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public String getMusicUrl() {
@@ -93,8 +101,8 @@ public class WechatMessageBody {
         return this;
     }
 
-    public WechatMessageBody image(String image) {
-        this.image = image;
+    public WechatMessageBody image(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 
@@ -117,7 +125,7 @@ public class WechatMessageBody {
             }
         }
         if (msgType == MSG_IMAGE) {
-            if (image == null) {
+            if (imageUrl == null) {
                 try {
                     throw new Exception("WechatMessageBody build error !");
                 } catch (Exception e) {
@@ -127,7 +135,7 @@ public class WechatMessageBody {
         }
 
         if (msgType == MSG_MUSIC) {
-            if (image == null | musicUrl == null | text == null | description == null | title == null) {
+            if (imageUrl == null | musicUrl == null | text == null | description == null | title == null) {
                 try {
                     throw new Exception("WechatMessageBody build error !");
                 } catch (Exception e) {
@@ -136,7 +144,7 @@ public class WechatMessageBody {
             }
         }
         if (msgType == MSG_VIDEO) {
-            if (image == null | videoUrl == null | text == null | description == null) {
+            if (imageUrl == null | videoUrl == null | text == null | description == null) {
                 try {
                     throw new Exception("WechatMessageBody build error !");
                 } catch (Exception e) {
@@ -145,7 +153,7 @@ public class WechatMessageBody {
             }
         }
         if (msgType == MSG_WEB) {
-            if (image == null | webpageUrl == null | title == null | description == null) {
+            if (imageUrl == null | webpageUrl == null | title == null | description == null) {
                 try {
                     throw new Exception("WechatMessageBody build error !");
                 } catch (Exception e) {
