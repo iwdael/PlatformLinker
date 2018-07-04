@@ -24,10 +24,19 @@ public class WeiboMessageBody {
     private String text;
     private String actionUrl;
     private String title;
-    private String image;
+    private String imageUrl;
     private String description;
     private ArrayList<Uri> imagesPath;
     private String videoPath;
+    private String localImage;
+
+    public String getLocalImage() {
+        return localImage;
+    }
+
+    public void setLocalImage(String localImage) {
+        this.localImage = localImage;
+    }
 
     public String getActionUrl() {
         return actionUrl;
@@ -41,8 +50,8 @@ public class WeiboMessageBody {
         return text;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public ArrayList<Uri> getImagesPath() {
@@ -87,8 +96,8 @@ public class WeiboMessageBody {
         return this;
     }
 
-    public WeiboMessageBody image(String image) {
-        this.image = image;
+    public WeiboMessageBody imageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 
@@ -111,7 +120,7 @@ public class WeiboMessageBody {
             }
         }
         if (type == WEIBO) {
-            if (msgType == MSG_TEXT_IAMGE && text == null && image == null && imagesPath == null) {
+            if (msgType == MSG_TEXT_IAMGE && text == null && imageUrl == null && imagesPath == null) {
                 try {
                     throw new Exception("WeiboMessageBody build error !");
                 } catch (Exception e) {
@@ -126,7 +135,7 @@ public class WeiboMessageBody {
                     }
                 }
             } else if (msgType == MSG_WEB) {
-                if (actionUrl == null | title == null | image == null | description == null) {
+                if (actionUrl == null | title == null | imageUrl == null | description == null) {
                     if (videoPath == null) {
                         try {
                             throw new Exception("WeiboMessageBody build error !");
@@ -147,7 +156,7 @@ public class WeiboMessageBody {
                     }
                 }
             } else {
-                if (image == null) {
+                if (imageUrl == null) {
                     try {
                         throw new Exception("WeiboMessageBody build error !");
                     } catch (Exception e) {
