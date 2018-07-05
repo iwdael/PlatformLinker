@@ -38,7 +38,7 @@ public abstract class FileDownloadHttp {
                     if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
                         String path = Environment.getExternalStorageDirectory().getPath() + "/Android/data/";
                         String packageName = mContext.getPackageName();
-                        path = path + packageName.replace(".", "/") + "/loginshare/";
+                        path = path + packageName + "/loginshare/";
                         new File(path).mkdirs();
                         Log.i(FileDownloadHttp.class.getName(), path);
                         path = path + System.currentTimeMillis() + ".jpg";
