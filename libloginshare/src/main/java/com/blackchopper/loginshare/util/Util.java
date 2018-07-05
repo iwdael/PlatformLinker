@@ -1,10 +1,7 @@
 package com.blackchopper.loginshare.util;
 
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.util.Log;
 
 import junit.framework.Assert;
@@ -22,6 +19,7 @@ import java.net.URLConnection;
 public class Util {
     public static final int THUMB_SIZE = 150;
     private static final String TAG = "LoginShare.Util";
+    private static final int MAX_DECODE_PICTURE_SIZE = 1920 * 1440;
 
     public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle) {
 //        ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -36,37 +34,51 @@ public class Util {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        int i;
-        int j;
-        if (bmp.getHeight() > bmp.getWidth()) {
-            i = bmp.getWidth();
-            j = bmp.getWidth();
-        } else {
-            i = bmp.getHeight();
-            j = bmp.getHeight();
-        }
 
-        Bitmap localBitmap = Bitmap.createBitmap(i, j, Bitmap.Config.RGB_565);
-        Canvas localCanvas = new Canvas(localBitmap);
 
-        while (true) {
-            localCanvas.drawBitmap(bmp, new Rect(0, 0, i, j), new Rect(0, 0, i, j), null);
-            if (needRecycle)
-                bmp.recycle();
-            ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
-            localBitmap.compress(CompressFormat.JPEG, 100,
-                    localByteArrayOutputStream);
-            localBitmap.recycle();
-            byte[] arrayOfByte = localByteArrayOutputStream.toByteArray();
-            try {
-                localByteArrayOutputStream.close();
-                return arrayOfByte;
-            } catch (Exception e) {
-                //F.out(e);
-            }
-            i = bmp.getHeight();
-            j = bmp.getHeight();
+//        int i;
+//        int j;
+//        if (bmp.getHeight() > bmp.getWidth()) {
+//            i = bmp.getWidth();
+//            j = bmp.getWidth();
+//        } else {
+//            i = bmp.getHeight();
+//            j = bmp.getHeight();
+//        }
+//
+//        Bitmap localBitmap = Bitmap.createBitmap(i, j, Bitmap.Config.RGB_565);
+//        Canvas localCanvas = new Canvas(localBitmap);
+//
+//        while (true) {
+//            localCanvas.drawBitmap(bmp, new Rect(0, 0, i, j), new Rect(0, 0, i, j), null);
+//            if (needRecycle)
+//                bmp.recycle();
+//            ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
+//            localBitmap.compress(CompressFormat.JPEG, 100,
+//                    localByteArrayOutputStream);
+//            localBitmap.recycle();
+//            byte[] arrayOfByte = localByteArrayOutputStream.toByteArray();
+//            try {
+//                localByteArrayOutputStream.close();
+//                return arrayOfByte;
+//            } catch (Exception e) {
+//                //F.out(e);
+//            }
+//            i = bmp.getHeight();
+//            j = bmp.getHeight();
+//        }
+
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, output);
+        int options = 100;
+        while (output.toByteArray().length > 32 && options > 0) {
+            output.reset(); //清空output
+            bmp.compress(Bitmap.CompressFormat.JPEG, options, output);//这里压缩options%，把压缩后的数据存放到output中
+            options -= 10;
         }
+        if (needRecycle && !bmp.isRecycled())
+            bmp.recycle();
+        return output.toByteArray();
     }
 
     public static byte[] getHtmlByteArray(final String url) {
@@ -151,8 +163,6 @@ public class Util {
         }
         return b;
     }
-
-    private static final int MAX_DECODE_PICTURE_SIZE = 1920 * 1440;
 
     public static Bitmap extractThumbNail(final String path, final int height, final int width, final boolean crop) {
         Assert.assertTrue(path != null && !path.equals("") && height > 0 && width > 0);
