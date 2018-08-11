@@ -9,10 +9,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.blackchopper.loginshare.change.SsoHandler;
+import com.blackchopper.loginshare.change.WbShareHandler;
+import com.blackchopper.loginshare.constant.Config;
 import com.blackchopper.loginshare.interfaces.ILogonShare;
+import com.blackchopper.loginshare.interfaces.OnLoginshareListener;
 import com.blackchopper.loginshare.messager.Messager;
 import com.blackchopper.loginshare.model.QQMessageBody;
 import com.blackchopper.loginshare.model.WechatMessageBody;
+import com.blackchopper.loginshare.model.WeiboMessageBody;
 import com.blackchopper.loginshare.proxy.ProxyFragment;
 import com.sina.weibo.sdk.WbSdk;
 import com.sina.weibo.sdk.auth.AuthInfo;
@@ -21,11 +26,6 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
-import com.blackchopper.loginshare.change.SsoHandler;
-import com.blackchopper.loginshare.change.WbShareHandler;
-import com.blackchopper.loginshare.constant.Config;
-import com.blackchopper.loginshare.interfaces.OnLoginshareListener;
-import com.blackchopper.loginshare.model.WeiboMessageBody;
 
 import static com.blackchopper.loginshare.constant.Config.TAG;
 
@@ -138,18 +138,18 @@ public abstract class BaseLoginShare implements ILogonShare {
     }
 
     @Override
+    public void launchWeiboShare(WeiboMessageBody weiboMessageBody) {
+        WbSdk.install(proxyFragment.getContext(), new AuthInfo(proxyFragment.getContext(), weiboValue, weiboRedirectUrl, weiboScope));
+        shareHandler = new WbShareHandler(proxyFragment.getContext());
+        shareHandler.registerApp();
+    }
+
+    @Override
     public void launchWechatShare(WechatMessageBody wechatMessageBody) {
         if (iWXAPI == null) {
             iWXAPI = WXAPIFactory.createWXAPI(proxyFragment.getContext(), wechatValue);
             iWXAPI.registerApp(wechatValue);
         }
-    }
-
-    @Override
-    public void launchWeiboShare(WeiboMessageBody weiboMessageBody) {
-        WbSdk.install(proxyFragment.getContext(), new AuthInfo(proxyFragment.getContext(), weiboValue, weiboRedirectUrl, weiboScope));
-        shareHandler = new WbShareHandler(proxyFragment.getContext());
-        shareHandler.registerApp();
     }
 
     @Override
@@ -161,9 +161,36 @@ public abstract class BaseLoginShare implements ILogonShare {
     @Override
     public void unRegister() {
         Messager.getInstance().unRegister(this);
+        removeFragment(activity);
         this.listener = null;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //QQ登录的回调
+        if (tencent != null) {
+            tencent.onActivityResultData(requestCode, resultCode, data, getIUIListener());
+        }
+        //微博登录的回调
+        if (ssoHandler != null) {
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+        shareHandler.doResultIntent(intent, getWbShareCallback());
+    }
+
+    private void removeFragment(AppCompatActivity activity) {
+        ProxyFragment proxyFragment = findFragment(activity);
+        boolean isNewInstance = proxyFragment == null;
+        if (!isNewInstance) {
+            FragmentManager fragmentManager = activity.getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.remove(proxyFragment).commitAllowingStateLoss();
+        }
+    }
 
     private ProxyFragment getFragment(AppCompatActivity activity) {
         ProxyFragment proxyFragment = findFragment(activity);
@@ -191,24 +218,6 @@ public abstract class BaseLoginShare implements ILogonShare {
     public abstract IUiListener getIUIListener();
 
     public abstract SsoHandler getSsoHandler();
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //QQ登录的回调
-        if (tencent != null) {
-            tencent.onActivityResultData(requestCode, resultCode, data, getIUIListener());
-        }
-        //微博登录的回调
-        if (ssoHandler != null) {
-            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
-        }
-    }
-
-    @Override
-    public void onNewIntent(Intent intent) {
-        shareHandler.doResultIntent(intent, getWbShareCallback());
-    }
 
     protected abstract WbShareCallback getWbShareCallback();
 }
