@@ -9,5 +9,5 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
  * project : LoginShare
  */
 
-public interface ILogonShare extends ILoginShare, IWXAPIEventHandler {
+public interface ILogonShare extends ILoginSharePay, IWXAPIEventHandler {
 }

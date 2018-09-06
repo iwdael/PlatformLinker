@@ -30,7 +30,7 @@ import static com.tencent.mm.opensdk.modelmsg.SendMessageToWX.Req.WXSceneTimelin
  * project : LoginShare
  */
 
-public class LoginShare extends ShareImpl {
+public abstract class LoginShare extends ShareImpl {
 
     public LoginShare(AppCompatActivity activity) {
         super(activity);

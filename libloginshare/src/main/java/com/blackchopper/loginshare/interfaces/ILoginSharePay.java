@@ -13,12 +13,14 @@ import com.blackchopper.loginshare.model.WeiboMessageBody;
  * project : LoginShare
  */
 
-public interface ILoginShare {
+public interface ILoginSharePay {
     void launchQQLogin();
 
     void launchWechatLogin();
 
     void launchWeiboLogin();
+
+    void payWechat(String partnerId,String prepayId,String nonceStr,String timeStamp,String sign);
 
     void launchQQShare(QQMessageBody qqMessageBody);
 
@@ -26,7 +28,7 @@ public interface ILoginShare {
 
     void launchWechatShare(WechatMessageBody wechatMessageBody);
 
-    void register(OnLoginshareListener listener);
+    void register(OnLoginShareListener listener);
 
     void unRegister();
 

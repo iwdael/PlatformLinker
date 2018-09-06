@@ -14,6 +14,7 @@ import com.sina.weibo.sdk.api.WeiboMultiMessage;
 import com.sina.weibo.sdk.share.WbShareCallback;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 
@@ -108,7 +109,7 @@ abstract class AbstractShare extends Login implements WbShareCallback {
     public void onResp(BaseResp resp) {
         super.onResp(resp);
         if (listener == null) return;
-        if (resp.getType() != 1) {
+        if (resp.getType() == ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX) {
             switch (resp.errCode) {
                 case BaseResp.ErrCode.ERR_OK:
                     listener.onShareSuccess(Type.Wechat);

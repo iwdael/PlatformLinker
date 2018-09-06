@@ -13,7 +13,7 @@ import com.blackchopper.loginshare.change.SsoHandler;
 import com.blackchopper.loginshare.change.WbShareHandler;
 import com.blackchopper.loginshare.constant.Config;
 import com.blackchopper.loginshare.interfaces.ILogonShare;
-import com.blackchopper.loginshare.interfaces.OnLoginshareListener;
+import com.blackchopper.loginshare.interfaces.OnLoginShareListener;
 import com.blackchopper.loginshare.messager.Messager;
 import com.blackchopper.loginshare.model.QQMessageBody;
 import com.blackchopper.loginshare.model.WechatMessageBody;
@@ -22,6 +22,7 @@ import com.blackchopper.loginshare.proxy.ProxyFragment;
 import com.sina.weibo.sdk.WbSdk;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.share.WbShareCallback;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.tauth.IUiListener;
@@ -48,7 +49,7 @@ public abstract class BaseLoginShare implements ILogonShare {
     protected WbShareHandler shareHandler;
     //wechat
     protected IWXAPI iWXAPI;
-    protected OnLoginshareListener listener;
+    protected OnLoginShareListener listener;
     //获取Key,secret，scope等。
     protected ApplicationInfo appInfo;
     protected PackageManager packageManager;
@@ -121,6 +122,30 @@ public abstract class BaseLoginShare implements ILogonShare {
     }
 
     @Override
+    public void payWechat(String partnerId, String prepayId, String nonceStr, String timeStamp, String sign) {
+        if (iWXAPI == null) {
+            iWXAPI = WXAPIFactory.createWXAPI(proxyFragment.getContext(), wechatValue);
+            iWXAPI.registerApp(wechatValue);
+        }
+        final PayReq req=new PayReq();
+        req.appId=wechatValue;
+        req.partnerId=partnerId;
+        req.prepayId=prepayId;
+        req.nonceStr=nonceStr;
+        req.timeStamp=timeStamp;
+        req.sign=sign;
+        req.packageValue="Sign=WXPay";
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                payWechat(req);
+            }
+        }).start();
+    }
+
+    protected abstract void payWechat(PayReq req);
+
+    @Override
     public void launchWeiboLogin() {
 
         WbSdk.install(proxyFragment.getContext(), new AuthInfo(proxyFragment.getContext(), weiboValue, weiboRedirectUrl, weiboScope));
@@ -153,7 +178,7 @@ public abstract class BaseLoginShare implements ILogonShare {
     }
 
     @Override
-    public void register(OnLoginshareListener listener) {
+    public void register(OnLoginShareListener listener) {
         this.listener = listener;
         Messager.getInstance().register(this);
     }

@@ -8,6 +8,7 @@ import com.blackchopper.loginshare.net.LoginShareHttp;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.tencent.connect.UserInfo;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -121,7 +122,7 @@ public abstract class Login extends AbstractLogin {
     @Override
     public void onResp(BaseResp baseResp) {
         //等于1为登陆的回调，其他的默认为分享的回调。
-        if (baseResp.getType() == 1) {
+        if (baseResp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
             SendAuth.Resp res = (SendAuth.Resp) baseResp;
             if (res.errCode == 0) {
                 //login success
