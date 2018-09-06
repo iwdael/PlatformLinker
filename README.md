@@ -1,4 +1,4 @@
-# LoginShare  [![](https://jitpack.io/v/blackchopper/loginsharepay.svg)](https://jitpack.io/#blackchopper/loginsharepay)
+# LoginSharePay  [![](https://jitpack.io/v/blackchopper/loginsharepay.svg)](https://jitpack.io/#blackchopper/loginsharepay)
 loginshare integrates login and share of QQ, Weibo and WeChat . It is simple to configure, easy to use, and can be quickly applied to applications, saving a lot of time for developers.[中文文档](https://github.com/blackchopper/LoginSharePay/blob/master/README_CHINESE.md)
 # Instruction
 Login and Share of WeChat, QQ and Weibo can be achieved through loginshare. If you only want to achieve login function, you can not achieve these two methods(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data)).
