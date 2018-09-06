@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:/Users/absurd/Desktop/LoginShare/LoginShare.iml" filepath="C:/Users/absurd/Desktop/LoginShare/LoginShare.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LoginShare.iml" filepath="$PROJECT_DIR$/LoginShare.iml" />
+      <module fileurl="file://C:\Users\absurd\Desktop\LoginShare\LoginShare.iml" filepath="C:\Users\absurd\Desktop\LoginShare\LoginShare.iml" />
+      <module fileurl="file://D:\Android Project\loginsharepay\LoginShare.iml" filepath="D:\Android Project\loginsharepay\LoginShare.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
-      <module fileurl="file://C:/Users/absurd/Desktop/LoginShare/example/example.iml" filepath="C:/Users/absurd/Desktop/LoginShare/example/example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
+      <module fileurl="file://C:\Users\absurd\Desktop\LoginShare\example\example.iml" filepath="C:\Users\absurd\Desktop\LoginShare\example\example.iml" />
+      <module fileurl="file://D:\Android Project\loginsharepay\example\example.iml" filepath="D:\Android Project\loginsharepay\example\example.iml" />
       <module fileurl="file://$PROJECT_DIR$/libloginshare/libloginshare.iml" filepath="$PROJECT_DIR$/libloginshare/libloginshare.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libloginshare/libloginshare.iml" filepath="$PROJECT_DIR$/libloginshare/libloginshare.iml" />
-      <module fileurl="file://C:/Users/absurd/Desktop/LoginShare/libloginshare/libloginshare.iml" filepath="C:/Users/absurd/Desktop/LoginShare/libloginshare/libloginshare.iml" />
-      <module fileurl="file://$PROJECT_DIR$/loginshare.iml" filepath="$PROJECT_DIR$/loginshare.iml" />
+      <module fileurl="file://D:\Android Project\loginsharepay\libloginshare\libloginshare.iml" filepath="D:\Android Project\loginsharepay\libloginshare\libloginshare.iml" />
+      <module fileurl="file://C:\Users\absurd\Desktop\LoginShare\libloginshare\libloginshare.iml" filepath="C:\Users\absurd\Desktop\LoginShare\libloginshare\libloginshare.iml" />
+      <module fileurl="file://D:\Android Project\loginsharepay\loginshare.iml" filepath="D:\Android Project\loginsharepay\loginshare.iml" />
+      <module fileurl="file://$PROJECT_DIR$/loginsharepay.iml" filepath="$PROJECT_DIR$/loginsharepay.iml" />
     </modules>
   </component>
 </project>
