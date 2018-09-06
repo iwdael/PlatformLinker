@@ -1,9 +1,9 @@
 package com.blackchopper.loginshare.interfaces.impl;
 
-import com.blackchopper.loginshare.interfaces.OnLoginShareListener;
+import com.blackchopper.loginshare.interfaces.OnLoginSharePayListener;
 import com.blackchopper.loginshare.model.Type;
 
-public class OnLoginSharePayListener implements OnLoginShareListener {
+public class OnLoginSharePayListener implements OnLoginSharePayListener {
     @Override
     public void onLoginSuccess(Type type, String info) {
 
