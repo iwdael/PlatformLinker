@@ -1,4 +1,4 @@
-# LoginSharePay  [![](https://jitpack.io/v/blackchopper/loginshare.svg)](https://jitpack.io/#blackchopper/loginshare)
+# LoginSharePay  [![](https://jitpack.io/v/blackchopper/loginsharepay.svg)](https://jitpack.io/#blackchopper/loginsharepay)
 loginshare集成QQ，微博，微信的登录和分享。它配置简单，使用方便，且能够快速运用到应用中，为开发者节省了大量时间。
 ## 使用说明
 QQ，微博，微信的登录和分享必须通过LoginShare类来实现，如果你只想实现登录功能，那么这两个方法就可以不用实现(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data))。
