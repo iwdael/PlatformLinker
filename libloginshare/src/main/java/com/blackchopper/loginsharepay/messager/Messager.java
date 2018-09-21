@@ -39,7 +39,11 @@ public class Messager {
     public void unRegister(IWXAPIEventHandler baseLogin) {
         binders.remove(baseLogin);
     }
-
+    
+    public void removeAll(){
+        binders.clear();
+    }
+    
     public void sendReq(BaseReq baseReq) {
         for (IWXAPIEventHandler binder : binders) {
             binder.onReq(baseReq);
