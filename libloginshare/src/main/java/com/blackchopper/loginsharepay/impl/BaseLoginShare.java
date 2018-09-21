@@ -185,8 +185,9 @@ public abstract class BaseLoginShare implements ILogonShare {
 
     @Override
     public void unRegister() {
-        Messager.getInstance().unRegister(this);
+        Messager.getInstance().removeAll();
         removeFragment(activity);
+        this.activity= null;
         this.listener = null;
     }
 
