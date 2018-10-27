@@ -111,11 +111,11 @@ android {
 
 ```
 ### Step 4. 复制动态库文件
-点击这里下载 [动态文件](https://raw.githubusercontent.com/hacknife/loginshare/master/libs.7z)，解压并复制文件到libs目录。
-![Image text](https://github.com/hacknife/LoginShare/blob/master/libs.png)
+点击这里下载 [动态文件](https://raw.githubusercontent.com/hacknife/loginsharepay/master/libs.7z)，解压并复制文件到libs目录。
+![Image text](https://github.com/hacknife/LoginSharepay/blob/master/libs.png)
 ### Step 5. 复制Java文件
-点击这里下载 [Java文件](https://raw.githubusercontent.com/hacknife/loginshare/master/wxapi.7z),解压并复制文件到应用包。
-![Image text](https://github.com/hacknife/LoginShare/blob/master/wxapi.png)
+点击这里下载 [Java文件](https://raw.githubusercontent.com/hacknife/loginsharepay/master/wxapi.7z),解压并复制文件到应用包。
+![Image text](https://github.com/hacknife/LoginSharepay/blob/master/wxapi.png)
 ### Step 6. 修改AndroidManifest文件
 复制代码且合并到Application标签
 ```Java
