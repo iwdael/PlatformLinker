@@ -1,5 +1,5 @@
 # LoginSharePay 
-[![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://github.com/hacknife/LoginSharePay)  [![](https://jitpack.io/v/hacknife/loginsharepay.svg)](https://jitpack.io/#hacknife/loginsharepay)<br/>
+[![](https://img.shields.io/badge/platform-android-brightgreen.svg)](https://github.com/hacknife/LoginSharePay)  [![](https://img.shields.io/badge/version-v1.1.4-orange.svg)](https://github.com/hacknife/LoginSharePay)<br/>
 loginshare集成QQ，微博，微信的登录和分享。它配置简单，使用方便，且能够快速运用到应用中，为开发者节省了大量时间。
 ## 使用说明
 QQ，微博，微信的登录和分享必须通过LoginShare类来实现，如果你只想实现登录功能，那么这两个方法就可以不用实现(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data))。[English](https://github.com/hacknife/LoginSharePay/blob/master/README_ENGLISH.md)
