@@ -82,17 +82,17 @@ public class MainActivity extends AppCompatActivity implements OnLoginshareListe
 	allprojects {
 		repositories {
 			...
-			maven { url 'https://jitpack.io' }
+			maven { url 'https://hacknife.com' }
 			maven { url "https://dl.bintray.com/thelasterstar/maven/" }
 		}
 	}
 ```
 ### Step 2. 添加依赖   
-合并以下代码到需要使用的application Module的dependencies尾。[点击查看详情](https://github.com/hacknife/CarouselBanner/blob/master/application_build.gradle.png)
+合并以下代码到需要使用的application Module的dependencies尾，注意替换version版本号。[点击查看详情](https://github.com/hacknife/CarouselBanner/blob/master/application_build.gradle.png)
 ```Java
 	dependencies {
                 ...
-	       compile 'com.github.hacknife:loginshare:v1.0.1'
+	       compile 'com.hacknife:loginsharepay:version'
 	       compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 	       compile 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
 	}
