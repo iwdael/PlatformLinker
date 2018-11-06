@@ -1,24 +1,23 @@
 # LoginSharePay 
-[![](https://img.shields.io/badge/platform-android-orange.svg)](https://github.com/hacknife) [![](https://jitpack.io/v/com.hacknife/loginsharepay.svg)](https://jitpack.io/#com.hacknife/loginsharepay)
-<br/>
-loginshare集成QQ，微博，微信的登录和分享。它配置简单，使用方便，且能够快速运用到应用中，为开发者节省了大量时间。
+[![](https://img.shields.io/badge/platform-android-orange.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/language-java-yellow.svg)](https://github.com/hacknife) [![](https://jitpack.io/v/com.hacknife/loginsharepay.svg)](https://jitpack.io/#com.hacknife/loginsharepay) [![](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/license-apache--2.0-green.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/api-11+-green.svg)](https://github.com/hacknife)<br/><br/>
+loginsharepay集成QQ，微博，微信的登录和分享以及微信支付。它配置简单，使用方便，且能够快速运用到应用中，为开发者节省了大量时间。
 ## 使用说明
-QQ，微博，微信的登录和分享必须通过LoginShare类来实现，如果你只想实现登录功能，那么这两个方法就可以不用实现(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data))。[English](https://github.com/hacknife/LoginSharePay/blob/master/README_ENGLISH.md)
+QQ，微博，微信的登录和分享必须通过LoginShare类来实现，如果你只想实现登录功能，那么这两个方法就可以不用实现(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data))。
 ### 代码示例
 ```Java
 public class MainActivity extends AppCompatActivity implements OnLoginshareListener {
-    LoginShare loginShare;
+    LoginSharePay loginShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loginShare = new LoginShare(this);
+        loginShare = new LoginSharePay(this);
 	
         //loginShare.launchQQLogin();
         //loginShare.launchWechatLogin();
         //loginShare.launchWeiboLogin();
-	    //loginShare.launchQQShare(MessageBody.QQMessageBodyBuilder());
+	//loginShare.launchQQShare(MessageBody.QQMessageBodyBuilder());
         //loginShare.launchWechatShare(MessageBody.WechatMessageBodyBuilder());
         //loginShare.launchWeiboShare(MessageBody.WeiboMessageBodyBuilder());
     }
