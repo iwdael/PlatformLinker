@@ -1,8 +1,8 @@
 # LoginSharePay 
-[![](https://img.shields.io/badge/platform-android-orange.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/language-java-yellow.svg)](https://github.com/hacknife) [![](https://jitpack.io/v/com.hacknife/loginsharepay.svg)](https://jitpack.io/#com.hacknife/loginsharepay) [![](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/license-apache--2.0-green.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/api-14+-green.svg)](https://github.com/hacknife)<br/><br/>
+[![](https://img.shields.io/badge/platform-android-orange.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/language-java-yellow.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/Jcenter-1.1.5-brightgreen.svg)](http://jcenter.bintray.com/com/hacknife/loginsharepay/) [![](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/license-apache--2.0-green.svg)](https://github.com/hacknife) [![](https://img.shields.io/badge/api-14+-green.svg)](https://github.com/hacknife)<br/><br/>
 loginsharepay集成QQ，微博，微信的登录和分享以及微信支付。它配置简单，使用方便，且能够快速运用到应用中，为开发者节省了大量时间。
 ## 使用说明
-QQ，微博，微信的登录和分享必须通过LoginShare类来实现，如果你只想实现登录功能，那么这两个方法就可以不用实现(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data))。
+QQ，微博，微信的登录和分享必须通过LoginSharePay类来实现，如果你只想实现登录功能，那么这两个方法就可以不用实现(onNewIntent(Intent intent),onActivityResult(int requestCode, int resultCode, Intent data))。
 ### 代码示例
 ```Java
 public class MainActivity extends AppCompatActivity implements OnLoginshareListener {
@@ -74,25 +74,23 @@ public class MainActivity extends AppCompatActivity implements OnLoginshareListe
     public void onShareError(Type type, int code) {
     }
 ```
-## 如何配置
+## 快速引入项目
 将本仓库引入你的项目:
-### Step 1. 添加JitPack仓库到Build文件
-合并以下代码到项目根目录下的build.gradle文件的repositories尾。[点击查看详情](https://github.com/hacknife/CarouselBanner/blob/master/root_build.gradle.png)
+### Step 1. 添加仓库到Build文件
+合并以下代码到项目根目录下的build.gradle文件的repositories中。
 ```Java
 	allprojects {
 		repositories {
-			...
-			maven { url 'https://hacknife.com' }
 			maven { url "https://dl.bintray.com/thelasterstar/maven/" }
 		}
 	}
 ```
 ### Step 2. 添加依赖   
-合并以下代码到需要使用的application Module的dependencies尾，注意替换version版本号。[点击查看详情](https://github.com/hacknife/CarouselBanner/blob/master/application_build.gradle.png)
+合并以下代码到需要使用的Module的dependencies中。
 ```Java
 	dependencies {
                 ...
-	       compile 'com.hacknife:loginsharepay:version'
+	       compile 'com.hacknife:loginsharepay:1.1.5'
 	       compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 	       compile 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
 	}
