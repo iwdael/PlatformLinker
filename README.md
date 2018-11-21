@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity implements OnLoginshareListe
         setContentView(R.layout.activity_main);
         loginShare = new LoginSharePay(this);
 	
-        //loginShare.launchQQLogin();
+        //loginShare.payWechat(...);
+	//loginShare.launchQQLogin();
         //loginShare.launchWechatLogin();
         //loginShare.launchWeiboLogin();
 	//loginShare.launchQQShare(MessageBody.QQMessageBodyBuilder());
