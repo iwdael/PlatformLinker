@@ -1,2 +1,2 @@
 include ':example'
-//include ':libloginshare'
+include ':libloginshare'

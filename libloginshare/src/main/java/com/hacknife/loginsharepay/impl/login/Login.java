@@ -16,6 +16,7 @@ import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.UiError;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -91,6 +92,7 @@ public abstract class Login extends AbstractLogin {
             } else {
                 if (jsonObject.isNull("figureurl_qq_1")) return;
                 jsonObject.put("openid", tencent.getOpenId());
+                jsonObject.put("access_token", tencent.getAccessToken());
                 listener.onLoginSuccess(Type.QQ, jsonObject.toString());
             }
         } catch (Exception e) {
@@ -169,7 +171,7 @@ public abstract class Login extends AbstractLogin {
 
     private void reqWechatInfo(String result) {
         try {
-            JSONObject access = new JSONObject(result);
+            final JSONObject access = new JSONObject(result);
             Map<String, String> body = new HashMap<>();
             body.put("access_token", access.getString("access_token"));
             body.put("openid", access.getString("openid"));
@@ -178,7 +180,14 @@ public abstract class Login extends AbstractLogin {
                 public void onResult(int code, String result) {
                     if (listener == null) return;
                     if (code == 0) {
-                        listener.onLoginSuccess(Type.Wechat, result);
+                        try {
+                            JSONObject object = new JSONObject(result);
+                            object.put("access_token", access.getString("access_token"));
+                            listener.onLoginSuccess(Type.Wechat, object.toString());
+                        } catch (JSONException e) {
+                            listener.onLoginSuccess(Type.Wechat, result);
+                        }
+
                     } else {
                         listener.onLoginError(Type.Wechat, code);
                     }
