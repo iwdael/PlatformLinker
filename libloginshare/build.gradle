@@ -25,7 +25,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
+    implementation 'io.github.sinaweibosdk:core:11.6.0@aar'
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation files('libs/open_sdk_r6008_lite.jar')
 }
