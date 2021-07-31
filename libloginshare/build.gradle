@@ -25,9 +25,9 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation files('libs/open_sdk_r6008_lite.jar')
-    api files('libs/core-4.1.0-openDefaultRelease.aar')
+    provided files('libs/core-4.1.0-openDefaultRelease.aar')
 }
 publish{
     userOrg = 'hacknife'
