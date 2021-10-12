@@ -9,13 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hacknife.loginsharepay.model.WechatMessageBody;
 import com.hacknife.loginsharepay.model.WeiboMessageBody;
 import com.hacknife.loginsharepay.util.Util;
-import com.sina.weibo.sdk.api.ImageObject;
-import com.sina.weibo.sdk.api.MultiImageObject;
-import com.sina.weibo.sdk.api.StoryMessage;
-import com.sina.weibo.sdk.api.TextObject;
-import com.sina.weibo.sdk.api.VideoSourceObject;
-import com.sina.weibo.sdk.api.WebpageObject;
-import com.sina.weibo.sdk.api.WeiboMultiMessage;
+//import com.sina.weibo.sdk.api.ImageObject;
+//import com.sina.weibo.sdk.api.MultiImageObject;
+//import com.sina.weibo.sdk.api.StoryMessage;
+//import com.sina.weibo.sdk.api.TextObject;
+//import com.sina.weibo.sdk.api.VideoSourceObject;
+//import com.sina.weibo.sdk.api.WebpageObject;
+//import com.sina.weibo.sdk.api.WeiboMultiMessage;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
 import com.tencent.mm.opensdk.modelmsg.WXImageObject;
@@ -41,55 +41,55 @@ public abstract class ShareImpl extends Share {
         super(activity);
     }
 
-    @Override
-    protected WeiboMultiMessage buildWeiboMultiMessage(WeiboMessageBody weiboMessageBody) {
-        WeiboMultiMessage msg = new WeiboMultiMessage();
-        if (weiboMessageBody.getText() != null)
-            msg.textObject = getTextObject(weiboMessageBody);
-        switch (weiboMessageBody.msgType) {
-            case WeiboMessageBody.MSG_WEB:
-                msg.mediaObject = getMediaObject(weiboMessageBody);
+//    @Override
+//    protected WeiboMultiMessage buildWeiboMultiMessage(WeiboMessageBody weiboMessageBody) {
+//        WeiboMultiMessage msg = new WeiboMultiMessage();
+//        if (weiboMessageBody.getText() != null)
+//            msg.textObject = getTextObject(weiboMessageBody);
+//        switch (weiboMessageBody.msgType) {
+//            case WeiboMessageBody.MSG_WEB:
+//                msg.mediaObject = getMediaObject(weiboMessageBody);
+//
+//            case WeiboMessageBody.MSG_TEXT_IAMGE:
+//                if (weiboMessageBody.getLocalImage() != null)
+//                    msg.imageObject = getImageObject(weiboMessageBody);
+//                if (weiboMessageBody.getImagesPath() != null)
+//                    msg.multiImageObject = getMultiImageObject(weiboMessageBody);
+//                break;
+//
+//            case WeiboMessageBody.MSG_VIDEO:
+//                if (weiboMessageBody.getVideoPath() != null)
+//                    msg.videoSourceObject = getVideoObject(weiboMessageBody);
+//                break;
+//        }
+//        return msg;
+//    }
+//
+//    protected abstract WebpageObject getMediaObject(WeiboMessageBody weiboMessageBody);
+//
+//    protected abstract VideoSourceObject getVideoObject(WeiboMessageBody weiboMessageBody);
+//
+//    protected abstract MultiImageObject getMultiImageObject(WeiboMessageBody weiboMessageBody);
+//
+//    protected abstract ImageObject getImageObject(WeiboMessageBody weiboMessageBody);
+//
+//    protected abstract TextObject getTextObject(WeiboMessageBody weiboMessageBody);
 
-            case WeiboMessageBody.MSG_TEXT_IAMGE:
-                if (weiboMessageBody.getLocalImage() != null)
-                    msg.imageObject = getImageObject(weiboMessageBody);
-                if (weiboMessageBody.getImagesPath() != null)
-                    msg.multiImageObject = getMultiImageObject(weiboMessageBody);
-                break;
-
-            case WeiboMessageBody.MSG_VIDEO:
-                if (weiboMessageBody.getVideoPath() != null)
-                    msg.videoSourceObject = getVideoObject(weiboMessageBody);
-                break;
-        }
-        return msg;
-    }
-
-    protected abstract WebpageObject getMediaObject(WeiboMessageBody weiboMessageBody);
-
-    protected abstract VideoSourceObject getVideoObject(WeiboMessageBody weiboMessageBody);
-
-    protected abstract MultiImageObject getMultiImageObject(WeiboMessageBody weiboMessageBody);
-
-    protected abstract ImageObject getImageObject(WeiboMessageBody weiboMessageBody);
-
-    protected abstract TextObject getTextObject(WeiboMessageBody weiboMessageBody);
-
-    @Override
-    protected StoryMessage buildStoryMessage(WeiboMessageBody weiboMessageBody) {
-        StoryMessage storyMessage = new StoryMessage();
-        switch (weiboMessageBody.msgType) {
-            case WeiboMessageBody.MSG_TEXT_IAMGE:
-                if (weiboMessageBody.getLocalImage() != null)
-                    storyMessage.setImageUri(Uri.fromFile(new File(weiboMessageBody.getLocalImage())));
-                break;
-            case WeiboMessageBody.MSG_VIDEO:
-                if (weiboMessageBody.getVideoPath() != null)
-                    storyMessage.setVideoUri(Uri.fromFile(new File(weiboMessageBody.getVideoPath())));
-                break;
-        }
-        return storyMessage;
-    }
+//    @Override
+//    protected StoryMessage buildStoryMessage(WeiboMessageBody weiboMessageBody) {
+//        StoryMessage storyMessage = new StoryMessage();
+//        switch (weiboMessageBody.msgType) {
+//            case WeiboMessageBody.MSG_TEXT_IAMGE:
+//                if (weiboMessageBody.getLocalImage() != null)
+//                    storyMessage.setImageUri(Uri.fromFile(new File(weiboMessageBody.getLocalImage())));
+//                break;
+//            case WeiboMessageBody.MSG_VIDEO:
+//                if (weiboMessageBody.getVideoPath() != null)
+//                    storyMessage.setVideoUri(Uri.fromFile(new File(weiboMessageBody.getVideoPath())));
+//                break;
+//        }
+//        return storyMessage;
+//    }
 
     @Override
     protected BaseReq buildWebWeChatMessageBody(WechatMessageBody wechatMessageBody) {

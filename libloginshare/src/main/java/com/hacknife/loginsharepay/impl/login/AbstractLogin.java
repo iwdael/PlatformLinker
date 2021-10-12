@@ -4,7 +4,6 @@ package com.hacknife.loginsharepay.impl.login;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hacknife.loginsharepay.impl.BaseLoginShare;
-import com.sina.weibo.sdk.auth.WbAuthListener;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.tauth.IUiListener;
 
@@ -15,7 +14,7 @@ import com.tencent.tauth.IUiListener;
  * project : LoginShare
  */
 
-  abstract class AbstractLogin extends BaseLoginShare implements WbAuthListener, IUiListener {
+  abstract class AbstractLogin extends BaseLoginShare implements IUiListener {
     public AbstractLogin(AppCompatActivity activity) {
         super(activity);
     }
@@ -23,7 +22,7 @@ import com.tencent.tauth.IUiListener;
     @Override
     public void launchWeiboLogin() {
         super.launchWeiboLogin();
-        ssoHandler.authorize(this);
+//        ssoHandler.authorize(this);
     }
 
     @Override

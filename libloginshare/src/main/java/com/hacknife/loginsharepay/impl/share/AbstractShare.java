@@ -10,9 +10,9 @@ import com.hacknife.loginsharepay.model.Type;
 import com.hacknife.loginsharepay.model.WechatMessageBody;
 import com.hacknife.loginsharepay.model.WeiboMessageBody;
 import com.hacknife.loginsharepay.net.FileDownloadHttp;
-import com.sina.weibo.sdk.api.StoryMessage;
-import com.sina.weibo.sdk.api.WeiboMultiMessage;
-import com.sina.weibo.sdk.share.WbShareCallback;
+//import com.sina.weibo.sdk.api.StoryMessage;
+//import com.sina.weibo.sdk.api.WeiboMultiMessage;
+//import com.sina.weibo.sdk.share.WbShareCallback;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
@@ -26,15 +26,15 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
  * project : LoginShare
  */
 
-abstract class AbstractShare extends Login implements WbShareCallback {
+abstract class AbstractShare extends Login   {
 
     public AbstractShare(AppCompatActivity activity) {
         super(activity);
     }
 
-    protected abstract StoryMessage buildStoryMessage(WeiboMessageBody weiboMessageBody);
-
-    protected abstract WeiboMultiMessage buildWeiboMultiMessage(WeiboMessageBody weiboMessageBody);
+//    protected abstract StoryMessage buildStoryMessage(WeiboMessageBody weiboMessageBody);
+//
+//    protected abstract WeiboMultiMessage buildWeiboMultiMessage(WeiboMessageBody weiboMessageBody);
 
     @Override
     public void launchQQShare(QQMessageBody qqMessageBody) {
@@ -79,30 +79,30 @@ abstract class AbstractShare extends Login implements WbShareCallback {
 
     @Override
     public void launchWeiboShare(final WeiboMessageBody weiboMessageBody) {
-        super.launchWeiboShare(weiboMessageBody);
-        FileDownloadHttp http = new FileDownloadHttp(activity, weiboMessageBody.getImageUrl()) {
-            @Override
-            public void onResult(String path) {
-                weiboMessageBody.setLocalImage(path);
-                if (weiboMessageBody.type == WeiboMessageBody.WEIBO)
-                    shareHandler.shareMessage(buildWeiboMultiMessage(weiboMessageBody), false);
-                else
-                    shareHandler.shareToStory(buildStoryMessage(weiboMessageBody));
-            }
-
-            @Override
-            public void onError() {
-                listener.onShareError(Type.Weibo, 1000);
-            }
-        };
-        http.executor();
+//        super.launchWeiboShare(weiboMessageBody);
+//        FileDownloadHttp http = new FileDownloadHttp(activity, weiboMessageBody.getImageUrl()) {
+//            @Override
+//            public void onResult(String path) {
+//                weiboMessageBody.setLocalImage(path);
+//                if (weiboMessageBody.type == WeiboMessageBody.WEIBO)
+//                    shareHandler.shareMessage(buildWeiboMultiMessage(weiboMessageBody), false);
+//                else
+//                    shareHandler.shareToStory(buildStoryMessage(weiboMessageBody));
+//            }
+//
+//            @Override
+//            public void onError() {
+//                listener.onShareError(Type.Weibo, 1000);
+//            }
+//        };
+//        http.executor();
 
     }
 
-    @Override
-    protected WbShareCallback getWbShareCallback() {
-        return this;
-    }
+//    @Override
+//    protected WbShareCallback getWbShareCallback() {
+//        return this;
+//    }
 
     protected abstract BaseReq analyzeWeChatMessageBody(WechatMessageBody wechatMessageBody);
 
@@ -136,24 +136,24 @@ abstract class AbstractShare extends Login implements WbShareCallback {
         super.onReq(baseReq);
     }
 
-    @Override
-    public void onWbShareSuccess() {
-        if (listener != null) {
-            listener.onShareSuccess(Type.Weibo);
-        }
-    }
-
-    @Override
-    public void onWbShareCancel() {
-        if (listener != null) {
-            listener.onShareCancel(Type.Weibo);
-        }
-    }
-
-    @Override
-    public void onWbShareFail() {
-        if (listener != null) {
-            listener.onShareError(Type.Weibo, -1);
-        }
-    }
+//    @Override
+//    public void onWbShareSuccess() {
+//        if (listener != null) {
+//            listener.onShareSuccess(Type.Weibo);
+//        }
+//    }
+//
+//    @Override
+//    public void onWbShareCancel() {
+//        if (listener != null) {
+//            listener.onShareCancel(Type.Weibo);
+//        }
+//    }
+//
+//    @Override
+//    public void onWbShareFail() {
+//        if (listener != null) {
+//            listener.onShareError(Type.Weibo, -1);
+//        }
+//    }
 }

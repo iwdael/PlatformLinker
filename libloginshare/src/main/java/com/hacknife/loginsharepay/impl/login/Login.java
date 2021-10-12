@@ -2,12 +2,12 @@ package com.hacknife.loginsharepay.impl.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.hacknife.loginsharepay.change.SsoHandler;
+//import com.hacknife.loginsharepay.change.SsoHandler;
 import com.hacknife.loginsharepay.model.Type;
 import com.hacknife.loginsharepay.net.LoginShareHttp;
 import com.hacknife.loginsharepay.constant.Config;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
+//import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+//import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.tencent.connect.UserInfo;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -34,42 +34,42 @@ public abstract class Login extends AbstractLogin {
         super(activity);
     }
 
-    //微博
-    @Override
-    public void onSuccess(Oauth2AccessToken oauth2AccessToken) {
-        if (oauth2AccessToken.isSessionValid()) {
-            Map<String, String> body = new HashMap<>();
-            body.put("uid", oauth2AccessToken.getUid());
-            body.put("access_token", oauth2AccessToken.getToken());
-            new LoginShareHttp(Config.WEIBO_USERINFO_URL, body) {
-                @Override
-                public void onResult(int code, String result) {
-                    if (listener == null) {
-                        return;
-                    }
-                    if (code == 0) {
-                        listener.onLoginSuccess(Type.Weibo, result);
-                    } else {
-                        listener.onLoginError(Type.Weibo, code);
-                    }
-                }
-            };
-        }
-    }
-
-    //微博
-    @Override
-    public void cancel() {
-        if (listener != null)
-            listener.onLoginCancel(Type.Weibo);
-    }
-
-    //微博
-    @Override
-    public void onFailure(WbConnectErrorMessage wbConnectErrorMessage) {
-        if (listener != null)
-            listener.onLoginError(Type.Weibo, Integer.parseInt(wbConnectErrorMessage.getErrorCode()));
-    }
+//    //微博
+//    @Override
+//    public void onSuccess(Oauth2AccessToken oauth2AccessToken) {
+//        if (oauth2AccessToken.isSessionValid()) {
+//            Map<String, String> body = new HashMap<>();
+//            body.put("uid", oauth2AccessToken.getUid());
+//            body.put("access_token", oauth2AccessToken.getToken());
+//            new LoginShareHttp(Config.WEIBO_USERINFO_URL, body) {
+//                @Override
+//                public void onResult(int code, String result) {
+//                    if (listener == null) {
+//                        return;
+//                    }
+//                    if (code == 0) {
+//                        listener.onLoginSuccess(Type.Weibo, result);
+//                    } else {
+//                        listener.onLoginError(Type.Weibo, code);
+//                    }
+//                }
+//            };
+//        }
+//    }
+//
+//    //微博
+//    @Override
+//    public void cancel() {
+//        if (listener != null)
+//            listener.onLoginCancel(Type.Weibo);
+//    }
+//
+//    //微博
+//    @Override
+//    public void onFailure(WbConnectErrorMessage wbConnectErrorMessage) {
+//        if (listener != null)
+//            listener.onLoginError(Type.Weibo, Integer.parseInt(wbConnectErrorMessage.getErrorCode()));
+//    }
 
     //qq
     @Override
@@ -164,10 +164,10 @@ public abstract class Login extends AbstractLogin {
         return this;
     }
 
-    @Override
-    public SsoHandler getSsoHandler() {
-        return ssoHandler;
-    }
+//    @Override
+//    public SsoHandler getSsoHandler() {
+//        return ssoHandler;
+//    }
 
     private void reqWechatInfo(String result) {
         try {

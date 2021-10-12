@@ -34,6 +34,7 @@ public class LoginSharePay extends LoginShare {
         }
      }
 
+
     @Override
     public void onWarning(int i) {
 
