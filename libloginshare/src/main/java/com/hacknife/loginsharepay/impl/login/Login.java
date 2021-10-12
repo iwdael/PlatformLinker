@@ -1,6 +1,6 @@
 package com.hacknife.loginsharepay.impl.login;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.hacknife.loginsharepay.change.SsoHandler;
 import com.hacknife.loginsharepay.model.Type;

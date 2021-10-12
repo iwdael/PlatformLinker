@@ -3,7 +3,8 @@ package com.hacknife.loginsharepay.impl.share;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.hacknife.loginsharepay.model.WechatMessageBody;
 import com.hacknife.loginsharepay.model.WeiboMessageBody;

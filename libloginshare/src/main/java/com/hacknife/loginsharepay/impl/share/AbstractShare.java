@@ -1,7 +1,8 @@
 package com.hacknife.loginsharepay.impl.share;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.hacknife.loginsharepay.impl.login.Login;
 import com.hacknife.loginsharepay.model.QQMessageBody;

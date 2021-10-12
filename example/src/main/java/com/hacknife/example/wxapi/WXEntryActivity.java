@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
+
 import com.hacknife.loginsharepay.constant.Config;
 import com.hacknife.loginsharepay.messager.Messager;
 import com.tencent.mm.opensdk.modelbase.BaseReq;

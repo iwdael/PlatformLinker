@@ -1,6 +1,6 @@
 package com.hacknife.loginsharepay.impl.share;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.hacknife.loginsharepay.model.WechatMessageBody;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
