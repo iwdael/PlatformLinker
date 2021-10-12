@@ -21,10 +21,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'
-//    api files('libs/open_sdk_r6008_lite.jar')
-    api 'com.tencent.tauth:qqopensdk:3.52.0'
-//    api 'io.github.sinaweibosdk:core:4.1.0@aar'
-    provided files('libs/core-4.1.0-openDefaultRelease.aar')
+    api files('libs/open_sdk_r6008_lite.jar')
+//    api 'com.tencent.tauth:qqopensdk:3.52.0'
+    api 'com.sina.weibo.sdk:core:4.1.0:openDefaultRelease@aar'
+//    provided files('libs/core-4.1.0-openDefaultRelease.aar')
+
 }
 
 repositories {
