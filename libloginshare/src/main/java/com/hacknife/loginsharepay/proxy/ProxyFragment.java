@@ -34,9 +34,9 @@ public class ProxyFragment extends Fragment {
             baseLogin.getTencent().onActivityResultData(requestCode, resultCode, data, baseLogin.getIUIListener());
         }
         //微博登录的回调
-        if (baseLogin.getSsoHandler() != null) {
-            baseLogin.getSsoHandler().authorizeCallBack(requestCode, resultCode, data);
-        }
+//        if (baseLogin.getSsoHandler() != null) {
+//            baseLogin.getSsoHandler().authorizeCallBack(requestCode, resultCode, data);
+//        }
         super.onActivityResult(requestCode, resultCode, data);
 
     }
