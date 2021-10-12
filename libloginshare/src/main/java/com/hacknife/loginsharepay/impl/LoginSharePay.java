@@ -33,4 +33,9 @@ public class LoginSharePay extends LoginShare {
                 listener.onPayError(Type.Wechat, resp.errCode);
         }
      }
+
+    @Override
+    public void onWarning(int i) {
+
+    }
 }
