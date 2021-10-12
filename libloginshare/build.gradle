@@ -23,8 +23,8 @@ dependencies {
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'
 //    api files('libs/open_sdk_r6008_lite.jar')
     api 'com.tencent.tauth:qqopensdk:3.52.0'
-    api 'io.github.sinaweibosdk:core:11.8.1@aar'
-//    api files('libs/core-4.1.0-openDefaultRelease.aar')
+//    api 'io.github.sinaweibosdk:core:4.1.0@aar'
+    api files('libs/core-4.1.0-openDefaultRelease.aar')
 }
 
 repositories {
