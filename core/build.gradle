@@ -1,0 +1,24 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: './../config.gradle'
+android {
+    compileSdkVersion df.compileSdk
+    defaultConfig {
+        minSdkVersion df.minSdk
+        targetSdkVersion df.targetSdk
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation dep.coreKtx
+    implementation dep.appcompat
+}

@@ -1,0 +1,26 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: './../config.gradle'
+android {
+    compileSdk df.compileSdk
+
+    defaultConfig {
+        minSdk df.minSdk
+        targetSdk df.targetSdk
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+dependencies {
+    implementation dep.coreKtx
+    implementation dep.appcompat
+    api 'com.tencent.mm.opensdk:wechat-sdk-android:6.8.0'
+    compileOnly project(":core")
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.iwdael.platformlinker.tencent">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <queries>
+        <package android:name="com.tencent.mobileqq" />
+    </queries>
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <application>
+        <meta-data
+            android:name="tencent_appid"
+            android:value="${tencent_appid}" />
+
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            tools:ignore="AppLinkUrlError">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent${tencent_appid}" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.iwdael.platformlinker.TencentAuthActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="com.iwdael.platformlinker.TencentPlatformContentProvider"
+            android:authorities="com.iwdael.platformlinker.TencentPlatformContentProvider" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.iwdael.platformlinker.tencent.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/platform_linker_file_paths" />
+        </provider>
+    </application>
+
+
+</manifest>

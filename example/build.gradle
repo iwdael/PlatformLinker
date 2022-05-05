@@ -1,28 +1,33 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+apply from: './../config.gradle'
 android {
-    compileSdkVersion 30
+
+    compileSdkVersion df.compileSdk
+
     defaultConfig {
-        applicationId "com.hacknife.example"
-        minSdkVersion 16
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        applicationId "com.iwdael.platformlinker"
+        minSdkVersion df.minSdk
+        targetSdkVersion df.targetSdk
+        versionCode df.versionCode
+        versionName df.versionName
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation project(':libloginshare')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-//    implementation 'com.hacknife:loginsharepay:1.1.5'
-}
-repositories {
-    mavenCentral()
+    implementation dep.coreKtx
+    implementation dep.appcompat
+    implementation dep.constraintlayout
+    implementation project(path: ':core')
+    implementation project(path: ':tencent')
 }

@@ -1,0 +1,29 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'kotlin'
+    id 'maven-publish'
+}
+apply from: './../config.gradle'
+
+dependencies {
+    implementation "com.android.tools.build:gradle:4.0.2"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            EC(MavenPublication) {
+                from components.java
+                groupId = "com.iwdael.platformlinker"
+                artifactId = "plugin"
+                version = "0.0.10"
+            }
+        }
+        repositories {
+            maven {
+                name = "local"
+                url = './../maven'
+            }
+        }
+    }
+}

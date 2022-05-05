@@ -1,2 +1,6 @@
+rootProject.name = "PlatformLinker"
 include ':example'
-include ':libloginshare'
+include ':core'
+include ':tencent'
+include ':wechat'
+include ':plugin'
